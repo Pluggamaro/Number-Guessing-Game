@@ -16,49 +16,71 @@ public class NumberGuess{
         try{
             generatedNumber = random.nextInt(1,101);
             
-            userGuess = scanner.nextInt();
+            
             
             do{
+                userGuess = scanner.nextInt();
+
+                
                 if(userGuess == generatedNumber){
                     System.out.printf("WOW! YOU GOT IT! \nThe number was %d",generatedNumber);
                     break;
                 }
-                else if(userGuess > generatedNumber && (userGuess - generatedNumber > 18)){
-                    System.out.printf("The number %d is too high",userGuess);
+                if(userGuess > 100){
+                    System.out.print("The RANGE is 1-100!! :");
                     attemptsLeft--;
+                    continue;
+                }
+                 if(userGuess < 0 || userGuess == 0){
+                    System.err.print("The number is surely greater than 0!! :");
+                    attemptsLeft--;
+                    
+                }
+                else if(userGuess > generatedNumber && (userGuess - generatedNumber > 18)){
+                    System.out.printf("The number %d is too high :",userGuess);
+                    attemptsLeft--;
+                    
                 }
                 else if(userGuess < generatedNumber && (generatedNumber - userGuess > 18)){
-                    System.out.printf("The number %d is too low",userGuess);
+                    System.out.printf("The number %d is too low. TRY AGAIN: ",userGuess);
                     attemptsLeft--;
+                    
                 }
                 else if(userGuess > generatedNumber && ((userGuess - generatedNumber < 12)&& (userGuess - generatedNumber > 6))){
-                    System.out.println("Not quite! but close, try again!");
+                    System.out.print("Not quite! but close, try again! :");
                     attemptsLeft--;
+                    
                 }
                 else if(userGuess < generatedNumber && ((generatedNumber - userGuess < 12)&& (generatedNumber - userGuess > 6) )){
-                    System.out.println("Not quite! !");
+                    System.out.print("Not quite! ! :");
                     attemptsLeft--;
+                    
                 }
                 else if(userGuess > generatedNumber && (((userGuess - generatedNumber < 7)))){
-                    System.out.println("REALLY CLOSE!! Keep at it!");
+                    System.out.print("REALLY CLOSE!! Keep at it!: ");
                     attemptsLeft--;
+                    
                 }
                 else if(userGuess < generatedNumber && ((generatedNumber - userGuess < 7) )){
-                    System.out.println("Super Close!!!");
+                    System.out.print("Super Close!!! :");
                     attemptsLeft--;
+                    
                 }
 
                 if( attemptsLeft < 6 && attemptsLeft >=1 ){
-                    System.out.printf("You have %d guess(es) REMAINING!! ",attemptsLeft);
+                    System.out.printf("\nYou have %d guess(es) REMAINING!! :",attemptsLeft);
+                    continue;
                 }
 
                 if(attemptsLeft == 0){
-                    System.out.println("GAME OVER!!! \nThe NUMBER was: " + generatedNumber);
+                    System.out.println("\nGAME OVER!!! \nThe NUMBER was: " + generatedNumber);
+                    continue;
                 }
+               
             }while(attemptsLeft>0);
 
         }catch(Exception e){
-
+            System.err.println("Error");
         }
 
     }
