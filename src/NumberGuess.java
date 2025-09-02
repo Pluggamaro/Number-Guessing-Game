@@ -6,7 +6,7 @@ public class NumberGuess{
     public static void main(String [] args){
 
         int generatedNumber;
-        int userGuess;
+        int userGuess = -1;
         int attemptsLeft = 10;
 
         Scanner scanner = new Scanner(System.in);
@@ -14,10 +14,9 @@ public class NumberGuess{
         System.out.println("****************NUMBER GUESSING GAME****************");        
         System.out.print("Guess the number (1-100): ");
 
+        generatedNumber = random.nextInt(100) + 1;
+
         try{
-            generatedNumber = random.nextInt(1,101);
-            
-            
             
             do{
                 userGuess = scanner.nextInt();
@@ -48,11 +47,13 @@ public class NumberGuess{
                     System.out.printf("The number %d is too low. TRY AGAIN: ",userGuess);
                     attemptsLeft--;
                     scanner.nextLine();
+                    continue;
                 }
                 else if(userGuess > generatedNumber && ((userGuess - generatedNumber < 12)&& (userGuess - generatedNumber > 6))){
                     System.out.print("Not quite! but close, try again! :");
                     attemptsLeft--;
                     scanner.nextLine();
+                    continue;
                 }
                 else if(userGuess < generatedNumber && ((generatedNumber - userGuess < 12)&& (generatedNumber - userGuess > 6) )){
                     System.out.print("Not quite! ! :");
@@ -72,9 +73,10 @@ public class NumberGuess{
 
                 if( attemptsLeft < 6 && attemptsLeft >=1 ){
                     System.out.printf("\nYou have %d guess(es) REMAINING!! :",attemptsLeft);
-                    scanner.nextLine();
+                    
                     attemptsLeft--;
-                    continue;
+                    scanner.nextLine();
+                    //continue;
                 }
 
                 if(attemptsLeft == 0){
